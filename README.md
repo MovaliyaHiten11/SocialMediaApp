@@ -1,97 +1,188 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Social Media Feed App
 
-# Getting Started
+A React Native social media application that mimics popular social media platforms with features like infinite scrolling, likes, comments, and user profiles.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## 🚀 Features
 
-## Step 1: Start Metro
+- **Feed Display**: Posts with user avatars, names, content, and images
+- **Infinite Scrolling**: Seamless loading of more posts as you scroll
+- **Like/Unlike**: Interactive like functionality with real-time count updates
+- **Comments**: Mock comment system for each post
+- **Tab Navigation**: Home, Profile, and Notifications tabs
+- **Profile Management**: Edit user details and view profile information
+- **Responsive Design**: Optimized for both iOS and Android
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+## 🛠️ Tech Stack
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+- **React Native**: 0.78.0
+- **React Navigation**: v6 (Tab and Stack navigation)
+- **Async Storage**: For local data persistence
+- **React Native Vector Icons**: For UI icons
+- **React Native Image Picker**: For profile image selection
+- **JSON Placeholder API**: Mock data source
 
-```sh
-# Using npm
-npm start
+## 🔧 Installation
 
-# OR using Yarn
-yarn start
-```
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/social-media-app.git
+   cd social-media-app
+   ```
 
-## Step 2: Build and run your app
+2. **Install dependencies**
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+3. **iOS Setup** (macOS only)
+   ```bash
+   cd ios && pod install && cd ..
+   ```
+
+4. **Android Setup**
+   - Make sure Android Studio is installed
+   - Configure Android SDK path in your environment variables
+   - Create an Android Virtual Device (AVD) or connect a physical device
+
+## 🏃‍♂️ Running the App
 
 ### Android
-
-```sh
-# Using npm
-npm run android
-
-# OR using Yarn
-yarn android
+```bash
+npx react-native run-android
 ```
 
 ### iOS
-
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
-bundle install
+```bash
+npx react-native run-ios
 ```
 
-Then, and every time you update your native dependencies, run:
-
-```sh
-bundle exec pod install
+### Metro Bundler
+```bash
+npx react-native start
 ```
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+## 📁 Project Structure
 
-```sh
-# Using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
+```
+SocialMediaApp/
+├── src/
+│   ├── assets/
+│   ├── components/
+│   │   ├── PostCard.js
+│   │   ├── CommentModal.js
+│   │   ├── LoadingSpinner.js
+│   │   └── Avatar.js
+│   ├── screens/
+│   │   ├── HomeScreen.js
+│   │   ├── ProfileScreen.js
+│   │   ├── NotificationsScreen.js
+│   │   ├── EditProfileScreen.js
+│   │   └── SplashScreen.js
+│   ├── navigation/
+│   │   └── AppNavigator.js
+│   ├── services/
+│   │   └── api.js
+│   ├── utils/
+│   │   ├── storage.js
+│   │   ├── icons.js
+│   │   ├── images.js
+│   │   └── helpers.js
+│   ├── hooks/
+│   │   └── usePosts.js
+│   └── styles/
+│       └── globalStyles.js
+├── assets/
+│   └── images/
+├── android/
+├── ios/
+├── package.json
+└── README.md
 ```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+## 🏗️ Architecture & Design Decisions
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+### Component Architecture
+- **Functional Components**: Used throughout the app with React Hooks
+- **Custom Hooks**: `usePosts` hook for managing post data and API calls
+- **Modular Design**: Separate components for reusability and maintainability
 
-## Step 3: Modify your app
+### Navigation
+- **React Navigation v6**: Bottom tab navigation with stack navigation
+- **Three main tabs**: Home (Feed), Profile, Notifications
 
-Now that you have successfully run the app, let's make changes!
+### State Management
+- **React Hooks**: useState, useEffect, useCallback for local state
+- **AsyncStorage**: For persisting user preferences and cached data
+- **Context API**: For global state management (user authentication, theme)
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+### API Integration
+- **JSONPlaceholder**: Mock API for posts, users, and comments
+- **Error Handling**: Comprehensive error handling with user-friendly messages
+- **Caching**: Basic caching mechanism for improved performance
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+### Performance Optimizations
+- **FlatList**: For efficient rendering of large lists
+- **Image Optimization**: Lazy loading and caching for post images
+- **Memoization**: React.memo and useMemo for preventing unnecessary re-renders
+- **Pagination**: Infinite scroll with batch loading
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+## 🧪 Testing
 
-## Congratulations! :tada:
+Run the test suite:
+```bash
+npm test
+# or
+yarn test
+```
 
-You've successfully run and modified your React Native App. :partying_face:
+## 🔧 Build for Production
 
-### Now what?
+### Android APK
+```bash
+cd android
+./gradlew assembleRelease
+```
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
+The APK will be generated at: `android/app/build/outputs/apk/release/app-release.apk`
 
-# Troubleshooting
+### iOS Build
+```bash
+npx react-native run-ios --configuration Release
+```
 
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+## 🌟 Bonus Features Implemented
 
-# Learn More
+- **Push Notifications**: Mock notification system
+- **Profile Editing**: Complete profile management
+- **Image Picker**: Profile picture selection
+- **Pull-to-Refresh**: Refresh feed with pull gesture
+- **Search**: Basic search functionality
+- **Dark Mode**: Theme switching capability
 
-To learn more about React Native, take a look at the following resources:
+## 🐛 Known Issues
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+- iOS simulator may have slower performance
+- Some animations may lag on older Android devices
+- Network-dependent features require internet connection
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit changes (`git commit -m 'Add amazing feature'`)
+4. Push to branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 👥 Authors
+
+- **Your Name** - *Initial work* -(https://github.com/MovaliyaHiten11/SocialMediaApp)
+
+## 🙏 Acknowledgments
+
+- JSONPlaceholder for providing mock API
+- React Native community for excellent documentation
+- All contributors who helped improve this project
+
+
