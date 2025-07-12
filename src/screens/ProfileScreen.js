@@ -157,6 +157,7 @@ const ProfileScreen = () => {
             <Text style={styles.actionButtonText}>Activity</Text>
           </TouchableOpacity>
         </View>
+        <View style={{paddingBottom:100}}/>
       </ScrollView>
     </SafeAreaView>
   );
