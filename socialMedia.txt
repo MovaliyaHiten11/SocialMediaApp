@@ -1,0 +1,5 @@
+JKS file : Happygram.JKS
+password : Happygram
+
+alias : key0
+password : Happygram
